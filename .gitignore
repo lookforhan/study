@@ -1,3 +1,7 @@
 
 Matlab-CALL-EPANET/matlab_call_epanet/epanet2.dll
 Matlab-CALL-EPANET/matlab_call_epanet/epanet2.h
+*.dll
+*.h
+*.asv
+*.rpt
