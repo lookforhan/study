@@ -13,7 +13,7 @@ if ~libisloaded('epanet2')
 end
 
 %读取link数和用水节点数
-calllib('epanet2','ENopen','test.inp','test.rpt','');
+calllib('epanet2','ENopen','Net1.inp','test.rpt','');
 [err,linknum]=calllib('epanet2','ENgetcount',2,linknum);
 [err,nodenum]=calllib('epanet2','ENgetcount',0,nodenum);
 [err,nonnodenum]=calllib('epanet2','ENgetcount',1,nonnodenum);
