@@ -6,7 +6,7 @@ close all;
  P_impactmatrix=[];
  basedemand_new=[];
 errcode=loadlibrary('epanet2.dll','epanet2.h');%加载EPANET文件
-errcode=calllib('epanet2','ENopen','Net4.inp','Net4.rpt','');%打开inp文件
+errcode=calllib('epanet2','ENopen','GWSL_4.inp','output.rpt','');%打开inp文件
 nodenum=0;%nodenum是总节点数目，可以赋予任意值，可以赋予任意值
 [errcode,nodenum]=calllib('epanet2','ENgetcount',0,nodenum);%获取总节点数目，注意获取数值的方式，两边要有相同的参数nodenum，也可以不同
 %0代表获取总节点数目的代码，左边的nodenum为返回值的存储变量，右边nodenum为初始值。
@@ -23,7 +23,7 @@ tstep=1;%初始化水力分析的步数，可以是任意非零值
 while (tstep && ~errcode)
 [errcode,time]=calllib('epanet2','ENrunH',time);%执行在time时刻的水力分析
 number=time/3600;
-if (number==11)%获取第11步水力分析的水力数据
+if (number==0)%获取第11步水力分析的水力数据
 for i=1:junctionnum
     [errcode,pressure]=calllib('epanet2','ENgetnodevalue',i,11,pressure);
     pressurevalue(i,1)=pressure;
@@ -49,7 +49,7 @@ for i=1:junctionnum
     while (tstep && ~errcode)
     [errcode,time]=calllib('epanet2','ENrunH',time);%执行在time时刻的水力分析
     number=time/3600;
-    if (number==11)
+    if (number==0)
     for j=1:junctionnum
         [errcode,pressurenew]=calllib('epanet2','ENgetnodevalue',j,11,pressurenew);
         pressure_new(j,i)=pressurenew;
